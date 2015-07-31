@@ -30,7 +30,7 @@ public class HandOfCards {
 			System.out.println();
 		}
 	}
-	
+
 	public void updateCards(){}
 	
 	public void findAndMeldRun()
@@ -48,7 +48,6 @@ public class HandOfCards {
 	
 	private void findAndMeldRunForSuitWithSequenceLength(int suit, int runLength)
 	{
-		
 		for(int windowPosition=1;windowPosition<=14-runLength;windowPosition++)
 		{
 			int noOfGapsInCurrentWindow = 0;
@@ -89,6 +88,16 @@ public class HandOfCards {
 		}
 	}
 	
-	public void isNaturalSet(){}
+	public void findAndMeldCanasta(){
+		
+		final int CARDS_IN_CANASTA = 3;
+			for(int rank = 1; rank <= 13; rank++){
+				for(int suit = 0; suit < 4; suit++){
+					if(hand[rank][suit] == CARDS_IN_CANASTA){
+						hand[rank][suit] = 0;
+				}
+			}
+		}
+	}
 	
 };
