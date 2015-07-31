@@ -2,17 +2,18 @@ import java.util.ArrayList;
 
 public class HandOfCards {
 
-	int[][] hand = new int[14][4];
-	public int NO_OF_SUITS = 4;
-
+	private int[][] hand = new int[14][4];
 	private int noOfCardsNeededToWin = 0;
-	int joker = 0;
-	static String suits = "SHCD";
-
-	public HandOfCards() {
-		for (int r = 0; r < 14; r++) {
-			for (int s = 0; s < 4; s++) {
-				hand[r][s] = 0;
+	private static final int NO_OF_SUITS = 4;
+	
+	
+	int joker=0;
+	static String suits= "SHCD";
+	
+	public HandOfCards(){
+		for(int r=0;r<14; r++){
+			for(int s=0;s<4;s++){
+				hand[r][s]=0;
 			}
 		}
 	}
@@ -24,7 +25,8 @@ public class HandOfCards {
 
 	public void displayHand() {
 		for (int r = 0; r < 14; r++) {
-			for (int s = 0; s < 4; s++) {
+			for (int s = 0; s < 4; s++) 
+			{
 				System.out.print(hand[r][s]);
 			}
 			System.out.println();
@@ -43,7 +45,14 @@ public class HandOfCards {
 		}
 	}
 
-	public void findAndMeldRunForSuit(int suit) {
+	public void findAndMeldRun()
+	{
+		for(int suit =0;suit<NO_OF_SUITS;suit++)
+			findAndMeldRunForSuit(suit);
+	}
+	
+	private void findAndMeldRunForSuit(int suit)
+	{
 		findAndMeldRunForSuitWithSequenceLength(suit, 5);
 		findAndMeldRunForSuitWithSequenceLength(suit, 4);
 		findAndMeldRunForSuitWithSequenceLength(suit, 3);
@@ -84,4 +93,20 @@ public class HandOfCards {
 		}
 	}
 
+	public void findAndMeldLoneCards(){
+		int loneCardCount=0;
+		for(int rank=1;rank<=13;rank++)
+		{
+			for(int suit=0;suit<4;suit++)
+			{
+				if(hand[rank][suit]!=0)
+					loneCardCount+=hand[rank][suit];
+			}
+		}
+		if(loneCardCount>0){
+			noOfCardsNeededToWin +=(3-loneCardCount);
+		}
+		
+	}	
 };
+
