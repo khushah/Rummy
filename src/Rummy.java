@@ -22,7 +22,9 @@ public class Rummy {
 	        System.out.println();
 	        rummy.generateHand(result);
 	        handOfCards.displayHand();
-	        
+	        //System.out.println("======================================================");
+	        System.out.println(handOfCards.meldCards());
+	        handOfCards.displayHand();
 
 	}
 

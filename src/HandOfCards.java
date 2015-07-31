@@ -49,8 +49,11 @@ public class HandOfCards {
 	private void findAndMeldRunForSuit(int suit)
 	{
 		findAndMeldRunForSuitWithSequenceLength(suit, 5);
+		//System.out.println(noOfCardsNeededToWin);
 		findAndMeldRunForSuitWithSequenceLength(suit, 4);
+		//System.out.println(noOfCardsNeededToWin);
 		findAndMeldRunForSuitWithSequenceLength(suit, 3);
+		//System.out.println(noOfCardsNeededToWin);
 	}
 	
 	private void findAndMeldRunForSuitWithSequenceLength(int suit, int runLength)
@@ -58,15 +61,18 @@ public class HandOfCards {
 		for(int windowPosition=1;windowPosition<=14-runLength;windowPosition++)
 		{
 			int noOfGapsInCurrentWindow = 0;
+			System.out.println("initial gaps = "+noOfGapsInCurrentWindow);
 			for(int positionInCurrentWindow=0;positionInCurrentWindow<runLength;positionInCurrentWindow++)
 			{
 				int rank =  windowPosition + positionInCurrentWindow;
 				if(hand[rank][suit]==0)
 					noOfGapsInCurrentWindow++;
 			}
-			if(noOfGapsInCurrentWindow<=3)
-			{
+			if(noOfGapsInCurrentWindow<=runLength-2)
+			{	
+				System.out.println("cards to win = "+noOfCardsNeededToWin+" before adding gaps");
 				noOfCardsNeededToWin += noOfGapsInCurrentWindow;
+				System.out.println("cards to win = "+noOfCardsNeededToWin);
 				for(int positionInCurrentWindow=0;positionInCurrentWindow<runLength;positionInCurrentWindow++)
 				{
 					int rank =  windowPosition + positionInCurrentWindow;
