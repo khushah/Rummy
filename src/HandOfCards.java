@@ -2,10 +2,11 @@ import java.util.ArrayList;
 
 public class HandOfCards {
 
-	int[][] hand = new int[14][4];
-	public int NO_OF_SUITS = 4;
-	
+	private int[][] hand = new int[14][4];
 	private int noOfCardsNeededToWin = 0;
+	private static final int NO_OF_SUITS = 4;
+	
+	
 	int joker=0;
 	static String suits= "SHCD";
 	public HandOfCards(){
@@ -15,10 +16,12 @@ public class HandOfCards {
 			}
 		}
 	}
+	
 	public void parseHand(int rank, char suit){
 		int suitIndex= suits.indexOf(suit);
 		hand[rank][suitIndex]++;
 	}
+	
 	public void displayHand(){
 		for(int r=0;r<14; r++){
 			for(int s=0;s<4;s++){
@@ -30,7 +33,13 @@ public class HandOfCards {
 	
 	public void updateCards(){}
 	
-	public void findAndMeldRunForSuit(int suit)
+	public void findAndMeldRun()
+	{
+		for(int suit =0;suit<NO_OF_SUITS;suit++)
+			findAndMeldRunForSuit(suit);
+	}
+	
+	private void findAndMeldRunForSuit(int suit)
 	{
 		findAndMeldRunForSuitWithSequenceLength(suit, 5);
 		findAndMeldRunForSuitWithSequenceLength(suit, 4);
@@ -39,7 +48,6 @@ public class HandOfCards {
 	
 	private void findAndMeldRunForSuitWithSequenceLength(int suit, int runLength)
 	{
-		int[] window = new int[runLength];
 		
 		for(int windowPosition=1;windowPosition<=14-runLength;windowPosition++)
 		{
