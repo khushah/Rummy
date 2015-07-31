@@ -3,9 +3,12 @@ import java.util.ArrayList;
 
 public class Rummy {
 	static HandOfCards handOfCards =  new HandOfCards();
-	public void generateHand(ArrayList<Card> hand){
+	
+	public void generateHand(ArrayList<Card> hand)
+	{
 		
-		for(int i=0;i<13;i++){
+		for(int i=0;i<13;i++)
+		{
 			handOfCards.parseHand(hand.get(i).getRank(),hand.get(i).getSuit());
 		}
 		

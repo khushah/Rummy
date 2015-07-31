@@ -20,7 +20,7 @@ public class HandOfCards {
 
 	public void parseHand(int rank, char suit) {
 		int suitIndex = suits.indexOf(suit);
-	if(rank==14){
+		if(rank==14){
 			joker++;
 		}
 		else{
@@ -67,11 +67,11 @@ public class HandOfCards {
 	
 	private void findAndMeldRunForSuit(int suit)
 	{
-		findAndMeldRunForSuitWithSequenceLength(suit, 5);
+		findAndMeldRunForSuitWithSequenceLength(suit, 3);
 		//System.out.println(noOfCardsNeededToWin);
 		findAndMeldRunForSuitWithSequenceLength(suit, 4);
 		//System.out.println(noOfCardsNeededToWin);
-		findAndMeldRunForSuitWithSequenceLength(suit, 3);
+		findAndMeldRunForSuitWithSequenceLength(suit, 5);
 		//System.out.println(noOfCardsNeededToWin);
 	}
 
@@ -82,7 +82,7 @@ public class HandOfCards {
 			System.out.println("initial gaps = "+noOfGapsInCurrentWindow);
 			for(int positionInCurrentWindow=0;positionInCurrentWindow<runLength;positionInCurrentWindow++)
 			{
-				int rank =  windowPosition + positionInCurrentWindow;
+				int rank =  (windowPosition + positionInCurrentWindow)%13;
 				if(hand[rank][suit]==0)
 					noOfGapsInCurrentWindow++;
 			}
