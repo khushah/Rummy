@@ -20,7 +20,12 @@ public class HandOfCards {
 
 	public void parseHand(int rank, char suit) {
 		int suitIndex = suits.indexOf(suit);
+	if(rank==14){
+			joker++;
+		}
+		else{
 		hand[rank][suitIndex]++;
+		}
 	}
 
 	public void displayHand() {
