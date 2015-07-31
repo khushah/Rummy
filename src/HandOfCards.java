@@ -31,7 +31,14 @@ public class HandOfCards {
 		}
 	}
 
-	public void updateCards(){}
+	public int meldCards()
+	{
+		findAndMeldCanasta();
+		findAndMeldRun();
+		findAndMeldSets();
+		findAndMeldLoneCards();
+		return noOfCardsNeededToWin;
+	}
 	
 	public void findAndMeldRun()
 	{
@@ -100,4 +107,4 @@ public class HandOfCards {
 		}
 	}
 	
-};
+}
