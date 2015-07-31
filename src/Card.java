@@ -2,32 +2,24 @@
 public class Card {
 
 
-	    private String suit;
-	    private String value;
-
-
-	    public Card(String suit, String value){
-	        this.suit = suit;
-	        this.value = value;
+	    private int rank;
+	    private char suit;
+	    public Card(int rank, char suit){
+	    	this.suit=suit;
+	    	this.rank=rank;
 	    }
-
-
-		public String getSuit() {
+		public int getRank() {
+			return rank;
+		}
+		public void setRank(int rank) {
+			this.rank = rank;
+		}
+		public char getSuit() {
 			return suit;
 		}
-
-
-		public void setSuit(String suit) {
+		public void setSuit(char suit) {
 			this.suit = suit;
 		}
+	
+	}
 
-
-		public String getValue() {
-			return value;
-		}
-
-
-		public void setValue(String value) {
-			this.value = value;
-		}
-}
