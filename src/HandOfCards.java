@@ -28,8 +28,6 @@ public class HandOfCards {
 		}
 	}
 	
-	public void updateCards(){}
-	
 	public void findAndMeldRunForSuit(int suit)
 	{
 		findAndMeldRunForSuitWithSequenceLength(suit, 5);
