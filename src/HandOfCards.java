@@ -1,5 +1,5 @@
 
-public class HandofCards {
+public class HandOfCards {
 
 	int[][] S,C,D,H;
 
@@ -9,7 +9,10 @@ public class HandofCards {
 	
 	public static void isRun(){}
 	
-	public static void isSet(){}
+	public static void isSet()
+	{
+		for()
+	}
 	
 	public static void isNaturalSet(){}
 	
