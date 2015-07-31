@@ -107,4 +107,19 @@ public class HandOfCards {
 		}
 	}
 	
+	public void findAndMeldLoneCards(){
+		int loneCardCount=0;
+		for(int rank=1;rank<=13;rank++)
+		{
+			for(int suit=0;suit<4;suit++)
+			{
+				if(hand[rank][suit]!=0)
+					loneCardCount+=hand[rank][suit];
+			}
+		}
+		if(loneCardCount>0){
+			noOfCardsNeededToWin +=(3-loneCardCount);
+		}
+		
+	}
 }
