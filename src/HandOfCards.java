@@ -33,6 +33,7 @@ public class HandOfCards {
 		}
 	}
 
+<<<<<<< HEAD
 	public void findAndMeldCanasta() {
 
 		final int CARDS_IN_CANASTA = 3;
@@ -45,6 +46,17 @@ public class HandOfCards {
 		}
 	}
 
+=======
+	public int meldCards()
+	{
+		findAndMeldCanasta();
+		findAndMeldRun();
+		findAndMeldSets();
+		findAndMeldLoneCards();
+		return noOfCardsNeededToWin;
+	}
+	
+>>>>>>> 664f6c633a91aa4c07514afd1357eb2839fa644a
 	public void findAndMeldRun()
 	{
 		for(int suit =0;suit<NO_OF_SUITS;suit++)
@@ -92,7 +104,23 @@ public class HandOfCards {
 			}
 		}
 	}
+<<<<<<< HEAD
 
+=======
+	
+	public void findAndMeldCanasta(){
+		
+		final int CARDS_IN_CANASTA = 3;
+			for(int rank = 1; rank <= 13; rank++){
+				for(int suit = 0; suit < 4; suit++){
+					if(hand[rank][suit] == CARDS_IN_CANASTA){
+						hand[rank][suit] = 0;
+				}
+			}
+		}
+	}
+	
+>>>>>>> 664f6c633a91aa4c07514afd1357eb2839fa644a
 	public void findAndMeldLoneCards(){
 		int loneCardCount=0;
 		for(int rank=1;rank<=13;rank++)
@@ -107,6 +135,11 @@ public class HandOfCards {
 			noOfCardsNeededToWin +=(3-loneCardCount);
 		}
 		
+<<<<<<< HEAD
 	}	
 };
 
+=======
+	}
+}
+>>>>>>> 664f6c633a91aa4c07514afd1357eb2839fa644a
