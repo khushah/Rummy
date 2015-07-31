@@ -9,6 +9,7 @@ public class HandOfCards {
 	
 	int joker=0;
 	static String suits= "SHCD";
+	
 	public HandOfCards(){
 		for(int r=0;r<14; r++){
 			for(int s=0;s<4;s++){
@@ -16,21 +17,27 @@ public class HandOfCards {
 			}
 		}
 	}
-	
-	public void parseHand(int rank, char suit){
-		int suitIndex= suits.indexOf(suit);
+
+	public void parseHand(int rank, char suit) {
+		int suitIndex = suits.indexOf(suit);
+	if(rank==14){
+			joker++;
+		}
+		else{
 		hand[rank][suitIndex]++;
+		}
 	}
-	
-	public void displayHand(){
-		for(int r=0;r<14; r++){
-			for(int s=0;s<4;s++){
+
+	public void displayHand() {
+		for (int r = 0; r < 14; r++) {
+			for (int s = 0; s < 4; s++) 
+			{
 				System.out.print(hand[r][s]);
 			}
 			System.out.println();
 		}
 	}
-
+	
 	public int meldCards()
 	{
 		findAndMeldCanasta();
@@ -39,7 +46,19 @@ public class HandOfCards {
 		findAndMeldLoneCards();
 		return noOfCardsNeededToWin;
 	}
-	
+
+	public void findAndMeldCanasta() {
+
+		final int CARDS_IN_CANASTA = 3;
+		for (int rank = 1; rank <= 13; rank++) {
+			for (int suit = 0; suit < 4; suit++) {
+				if (hand[rank][suit] == CARDS_IN_CANASTA) {
+					hand[rank][suit] = 0;
+				}
+			}
+		}
+	}
+
 	public void findAndMeldRun()
 	{
 		for(int suit =0;suit<NO_OF_SUITS;suit++)
@@ -55,11 +74,10 @@ public class HandOfCards {
 		findAndMeldRunForSuitWithSequenceLength(suit, 3);
 		//System.out.println(noOfCardsNeededToWin);
 	}
-	
-	private void findAndMeldRunForSuitWithSequenceLength(int suit, int runLength)
-	{
-		for(int windowPosition=1;windowPosition<=14-runLength;windowPosition++)
-		{
+
+	private void findAndMeldRunForSuitWithSequenceLength(int suit, int runLength) {
+		final int MAX_WINDOW_POSITION  = 15 - runLength;
+		for (int windowPosition = 1; windowPosition <= MAX_WINDOW_POSITION; windowPosition++) {
 			int noOfGapsInCurrentWindow = 0;
 			System.out.println("initial gaps = "+noOfGapsInCurrentWindow);
 			for(int positionInCurrentWindow=0;positionInCurrentWindow<runLength;positionInCurrentWindow++)
@@ -82,37 +100,22 @@ public class HandOfCards {
 			}
 		}
 	}
-	
-	public void findAndMeldSets()
-	{
-		for(int rank=1;rank<=13;rank++)
-		{
-			ArrayList<Integer> suitsWithCardsOfCurrentRank  = new ArrayList<Integer>() ;
-			for(int suit=0;suit<4;suit++)
-			{
-				if(hand[rank][suit]>0)
+
+	public void findAndMeldSets() {
+		for (int rank = 1; rank <= 13; rank++) {
+			ArrayList<Integer> suitsWithCardsOfCurrentRank = new ArrayList<Integer>();
+			for (int suit = 0; suit < 4; suit++) {
+				if (hand[rank][suit] > 0)
 					suitsWithCardsOfCurrentRank.add(suit);
 			}
-			if(suitsWithCardsOfCurrentRank.size()>=3)
-			{
-				for(Integer suit : suitsWithCardsOfCurrentRank)
+
+			if (suitsWithCardsOfCurrentRank.size() >= 3) {
+				for (Integer suit : suitsWithCardsOfCurrentRank)
 					hand[rank][suit]--;
 			}
 		}
 	}
-	
-	public void findAndMeldCanasta(){
-		
-		final int CARDS_IN_CANASTA = 3;
-			for(int rank = 1; rank <= 13; rank++){
-				for(int suit = 0; suit < 4; suit++){
-					if(hand[rank][suit] == CARDS_IN_CANASTA){
-						hand[rank][suit] = 0;
-				}
-			}
-		}
-	}
-	
+
 	public void findAndMeldLoneCards(){
 		int loneCardCount=0;
 		for(int rank=1;rank<=13;rank++)
@@ -127,5 +130,5 @@ public class HandOfCards {
 			noOfCardsNeededToWin +=(3-loneCardCount);
 		}
 		
-	}
-}
+	}	
+};
