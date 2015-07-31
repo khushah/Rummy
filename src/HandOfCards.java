@@ -21,7 +21,7 @@ public class HandOfCards {
 				if(hand[rank][suit]>0)
 					suitsWithCardsOfCurrentRank.add(suit);
 			}
-			if(suitsWithCardsOfCurrentRank.size()>3)
+			if(suitsWithCardsOfCurrentRank.size()>=3)
 			{
 				for(Integer suit : suitsWithCardsOfCurrentRank)
 					hand[rank][suit]--;
