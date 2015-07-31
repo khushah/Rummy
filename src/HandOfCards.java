@@ -6,8 +6,27 @@ public class HandOfCards {
 	public int NO_OF_SUITS = 4;
 	
 	private int noOfCardsNeededToWin = 0;
-
-	public void HandParse(){}
+	int joker=0;
+	static String suits= "SHCD";
+	public HandOfCards(){
+		for(int r=0;r<14; r++){
+			for(int s=0;s<4;s++){
+				hand[r][s]=0;
+			}
+		}
+	}
+	public void parseHand(int rank, char suit){
+		int suitIndex= suits.indexOf(suit);
+		hand[rank][suitIndex]++;
+	}
+	public void displayHand(){
+		for(int r=0;r<14; r++){
+			for(int s=0;s<4;s++){
+				System.out.print(hand[r][s]);
+			}
+			System.out.println();
+		}
+	}
 	
 	public void updateCards(){}
 	
