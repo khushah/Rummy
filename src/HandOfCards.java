@@ -42,8 +42,8 @@ public class HandOfCards {
 	{
 		findAndMeldCanasta();
 		findAndMeldRun();
-		findAndMeldSets();
-		findAndMeldLoneCards();
+		//findAndMeldSets();
+		//findAndMeldLoneCards();
 		return noOfCardsNeededToWin;
 	}
 
@@ -67,12 +67,7 @@ public class HandOfCards {
 	
 	private void findAndMeldRunForSuit(int suit)
 	{
-		findAndMeldRunForSuitWithSequenceLength(suit, 3);
-		//System.out.println(noOfCardsNeededToWin);
-		findAndMeldRunForSuitWithSequenceLength(suit, 4);
-		//System.out.println(noOfCardsNeededToWin);
 		findAndMeldRunForSuitWithSequenceLength(suit, 5);
-		//System.out.println(noOfCardsNeededToWin);
 	}
 
 	private void findAndMeldRunForSuitWithSequenceLength(int suit, int runLength) 
@@ -80,30 +75,54 @@ public class HandOfCards {
 		final int MAX_WINDOW_POSITION  = 15 - runLength;
 		for (int windowPosition = 1; windowPosition <= MAX_WINDOW_POSITION; windowPosition++) 
 		{
-			int noOfGapsInCurrentWindow = 0;
-			for(int positionInCurrentWindow=0;positionInCurrentWindow<runLength;positionInCurrentWindow++)
+			String attendanceRegex="";
+			if(attendanceRegex.matches("[O]*XX[O]*"))
 			{
-				int rank =  (windowPosition + positionInCurrentWindow)%13;
-				if(hand[rank][suit]==0)
-					noOfGapsInCurrentWindow++;
-			}
-			if(noOfGapsInCurrentWindow<=3)
-			{	
-				System.out.println("Start position :"+windowPosition+","+runLength+")");
-				System.out.println("cards to win = "+noOfCardsNeededToWin+" before adding gaps");
-				noOfCardsNeededToWin += noOfGapsInCurrentWindow;
-				System.out.println("cards to win = "+noOfCardsNeededToWin);
+				noOfCardsNeededToWin+=1;
 				for(int positionInCurrentWindow=0;positionInCurrentWindow<runLength;positionInCurrentWindow++)
 				{
-					int rank =  windowPosition + positionInCurrentWindow;
-					
-					if(hand[rank][suit]>0)
+					int rank =  (windowPosition + positionInCurrentWindow)%13;
+					if(hand[rank][suit]!=0)
 						hand[rank][suit]--;
 				}
+			}	
+			else if(attendanceRegex.matches("[O]*[X]+[O,X]*[X]+[O]*"))
+			{
+				int indexOfLastX = 0;
+				for(int index = attendanceRegex.length()-1; index>0;index--)
+				{
+					if(attendanceRegex.charAt(index)=='X')
+					{
+						indexOfLastX = index;
+						break;
+					}
+				}
+				int indexOfFirstX = 0;
+				for(int index = 0; index<attendanceRegex.length();index++)
+				{
+					if(attendanceRegex.charAt(index)=='X')
+					{
+						indexOfFirstX = index;
+						break;
+					}
+				}
+				int noOfGaps = 0;
+				for(int i = indexOfFirstX+1;i<indexOfLastX;i++)
+				{
+					if(attendanceRegex.charAt(i)=='O')
+						noOfGaps++;
+					else
+					{
+						int rank = windowPosition + i;
+						hand[rank][suit]--;
+					}
+				}
+				noOfCardsNeededToWin+=noOfGaps;
 			}
-			for(int r=1;r<=13;r++)
-				System.out.println(hand[r][suit]);
+				
+				
 		}
+		
 	}
 
 	public void findAndMeldSets() {
