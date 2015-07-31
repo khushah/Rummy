@@ -5,9 +5,9 @@ public class HandOfCards {
 
 	public static void HandParse(){}
 	
-	public static void isRun(){}
+	public static void meldRun(){}
 	
-	public static void isCanasta(int[][] hand){
+	public static void meldCanasta(int[][] hand){
 		
 		final int CARDS_IN_CANASTA = 3;
 		for(int suit = 0; suit < 4; suit++){
@@ -21,6 +21,6 @@ public class HandOfCards {
 	
 	private static void updateCards(int numberOfCards) {}
 
-	public static void isSet(){}
+	public static void meldSet(){}
 	
 };
